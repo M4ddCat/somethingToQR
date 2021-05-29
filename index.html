@@ -51,20 +51,6 @@
         <div id="qrcode" align="center"><canvas width="200" height="200"></canvas></div>
         <!-- Вывод QR кода после заполнения -->
         <script>
-            function get_cookie (cookie_name) {
-                var results = document.cookie.match ('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
-
-                if (results)
-                    return (unescape(results[2]));
-                else
-                    return null;
-            }
-
-	    var valueCookie = "";
-
-	    if (get_cookie("value")) {
-	        valueCookie = get_cookie("value");
-	    }
             $('#converter').val(valueCookie);
             var checkValToQR = "";
             let autoscript = setInterval(() => {
@@ -74,8 +60,6 @@
                         $("#qrcode").html("");
                         jQuery('#qrcode').qrcode({width: 200, height: 200, text: valueToQR});
                         var date = new Date();
-                        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-                        document.cookie = "value=" + encodeURIComponent(checkValToQR) + "; expires=" + date.toUTCString() + ";";
                     }
                 }
                 else {
@@ -83,7 +67,6 @@
                 }
             });
         </script>
-        <p>Данные будут храниться месяц.</p>
         <p>GitHub профиль разработчика - <a href="https://github.com/M4ddCat" target="_blank">M4ddCat</a></p>
     
 </body></html>
