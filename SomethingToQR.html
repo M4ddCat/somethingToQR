@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Перевод чего-либо в QR код</title>
+
+        <script src="jquery.js"></script>
+        <script src="jquery.qrcode.min.js"></script>
+
+        <style>
+            IMG.centred {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5px;
+            }
+            input.centred {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 14px;
+                text-align: center;
+                border: 2px solid;
+                border-radius: 3px 3px 3px 3px;
+            }
+            input.centred:focus {
+                outline: none !important;
+                border-color: blue;
+                border-radius: 3px 3px 3px 3px;
+            }
+            div {
+                margin-top: 20px;
+            }
+            p {
+                margin-top: 20px;
+                font-size: 16px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                text-align: center;
+           }
+            </style>
+    </head>
+    <body>
+        <!-- logo can be here --> 
+        <img class="centred" src="logo.png" style="text-align:center" width="200" height="141"> 
+        <!-- place for text -->
+        <input type="text" placeholder="Введите сюда что-то" id="converter" class="centred" width="200">
+        <div id="qrcode" align="center"><canvas width="200" height="200"></canvas></div>
+        <!-- Вывод QR кода после заполнения -->
+        <script>
+            function get_cookie (cookie_name) {
+                var results = document.cookie.match ('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
+
+                if (results)
+                    return (unescape(results[2]));
+                else
+                    return null;
+            }
+
+	    var valueCookie = "";
+
+	    if (get_cookie("value")) {
+	        valueCookie = get_cookie("value");
+	    }
+            $('#converter').val(valueCookie);
+            var checkValToQR = "";
+            let autoscript = setInterval(() => {
+            var valueToQR = (document.getElementById("converter").value);
+                if  (valueToQR.length >= 1) {
+                    if (checkValToQR != valueToQR) {
+                        $("#qrcode").html("");
+                        jQuery('#qrcode').qrcode({width: 200, height: 200, text: valueToQR});
+                        var date = new Date();
+                        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+                        document.cookie = "value=" + encodeURIComponent(checkValToQR) + "; expires=" + date.toUTCString() + ";";
+                    }
+                }
+                else {
+                    $("#qrcode").html("");
+                }
+            });
+        </script>
+        <p>Данные будут храниться месяц.</p>
+        <p>GitHub профиль разработчика - <a href="https://github.com/M4ddCat" target="_blank">M4ddCat</a></p>
+    
+</body></html>
