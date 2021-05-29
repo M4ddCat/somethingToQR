@@ -51,7 +51,6 @@
         <div id="qrcode" align="center"><canvas width="200" height="200"></canvas></div>
         <!-- Вывод QR кода после заполнения -->
         <script>
-            $('#converter').val(valueCookie);
             var checkValToQR = "";
             let autoscript = setInterval(() => {
             var valueToQR = (document.getElementById("converter").value);
@@ -59,7 +58,6 @@
                     if (checkValToQR != valueToQR) {
                         $("#qrcode").html("");
                         jQuery('#qrcode').qrcode({width: 200, height: 200, text: valueToQR});
-                        var date = new Date();
                     }
                 }
                 else {
