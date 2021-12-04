@@ -10,13 +10,17 @@
         <script src="jquery.qrcode.min.js"></script>
 
         <style>
+            body {
+                margin: 0 auto;
+                object-position: center;
+            }
             IMG.centred {
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: 5px;
             }
-            input.centred {
+            input.converter {
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
@@ -32,9 +36,6 @@
                 border-color: blue;
                 border-radius: 3px 3px 3px 3px;
             }
-            div {
-                margin-top: 20px;
-            }
             p {
                 margin-top: 20px;
                 font-size: 16px;
@@ -47,24 +48,24 @@
         <!-- logo can be here --> 
         <img class="centred" src="logo.png" style="text-align:center" width="200" height="141"> 
         <!-- place for text -->
-        <input type="text" placeholder="Type here something" id="converter" class="centred" width="200">
-        <div id="qrcode" align="center"><canvas width="200" height="200"></canvas></div>
+        <input type="text" placeholder="Type here something" class="converter" width="200">
+        <div class="qrcode" align = center><canvas width="200" height="200"></canvas></div>
         <!-- QR output script -->
         <script>
             var checkValToQR = "";
             let autoscript = setInterval(() => {
-            var valueToQR = (document.getElementById("converter").value);
+            var valueToQR = ($('.converter').val());
                 if  (valueToQR.length >= 1) {
                     if (checkValToQR != valueToQR) {
-                        $("#qrcode").html("");
-                        jQuery('#qrcode').qrcode({width: 200, height: 200, text: valueToQR}).show(500);
+                        $(".qrcode").html("");
+                        jQuery('.qrcode').css('margin-top', '20px').qrcode({width: 200, height: 200, text: valueToQR}).slideDown();
                     }
                 }
                 else {
-                    $("#qrcode").html("");
+                    $(".qrcode").slideUp();
                 }
             });
         </script>
-        <p>Developer GitHub profile - <a href="https://github.com/M4ddCat" target="_blank">M4ddCat</a></p>
+        <p>Developer's GitHub - <a href="https://github.com/M4ddCat" target="_blank">M4ddCat</a></p>
     
 </body></html>
