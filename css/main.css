@@ -1,0 +1,32 @@
+body {
+    margin: 0 auto;
+    object-position: center;
+}
+IMG.centred {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+input.converter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 3px 3px 3px 3px;
+}
+input.centred:focus {
+    outline: none !important;
+    border-color: blue;
+    border-radius: 3px 3px 3px 3px;
+}
+p {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
